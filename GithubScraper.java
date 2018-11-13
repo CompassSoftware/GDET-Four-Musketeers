@@ -10,7 +10,12 @@ public class GithubScraper {
         
     }
 
-    public void printCURL(String url) throws IOException {
+    /*
+     * Takes in a url to curl and then returns the response
+     * @param url - String the url that you want to curl
+     * @return the response from the curl request
+     */
+    public String curlRequest(String url) throws IOException {
 
         URL urlObj = new URL(url);
         URLConnection uc = urlObj.openConnection();
@@ -22,20 +27,21 @@ public class GithubScraper {
         final int bufferSize = 1024;
         final char[] buffer = new char[bufferSize];
         final StringBuilder out = new StringBuilder();
-        //Reader in = new InputStreamReader(inputStream, "UTF-8");
         for (; ; ) {
             int rsz = inputStream.read(buffer, 0, buffer.length);
             if (rsz < 0)
                 break;
             out.append(buffer, 0, rsz);
         }
-        System.out.print(out.toString());
+        // System.out.print(out.toString());
+        return out.toString();
     }
 
     public static void main(String[] args) throws IOException {
         System.out.println("hi");
         GithubScraper scraper = new GithubScraper();
-        scraper.printCURL("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues");
+        String resp = scraper.curlRequest("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues");
+        System.out.print(resp);
     }
 
 }
