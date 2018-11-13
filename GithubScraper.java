@@ -5,19 +5,39 @@ import java.lang.StringBuilder;
 import java.net.URLConnection;
 
 public class GithubScraper {
+
+    private String baseURL = "";
     
-    public GithubScraper() {
-        
+    public GithubScraper(String url) {
+        setBaseURL(url);
     }
 
     /*
-     * Takes in a url to curl and then returns the response
-     * @param url - String the url that you want to curl
+     * Sets the base url of the project
+     */
+    public void setBaseURL(String url) {
+        baseURL = url;
+    }
+
+    /*
+     * Gets the base url of the project
+     */
+    public String getBaseURL() {
+        return baseURL;
+    }
+
+    public String requestProjectIssues() throws IOException {
+        return curlRequest("issues");
+    }
+
+    /*
+     * Takes in some url extensions to curl and then returns the response
+     * @param urlEXT - String the url extensions you want for your curl request
      * @return the response from the curl request
      */
-    public String curlRequest(String url) throws IOException {
+    public String curlRequest(String urlExt) throws IOException {
 
-        URL urlObj = new URL(url);
+        URL urlObj = new URL(getBaseURL() + urlExt);
         URLConnection uc = urlObj.openConnection();
 
         uc.setRequestProperty("X-Requested-With", "Curl");
@@ -33,15 +53,12 @@ public class GithubScraper {
                 break;
             out.append(buffer, 0, rsz);
         }
-        // System.out.print(out.toString());
         return out.toString();
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("hi");
-        GithubScraper scraper = new GithubScraper();
-        String resp = scraper.curlRequest("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues");
-        System.out.print(resp);
+        GithubScraper scraper = new GithubScraper("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/");
+        System.out.print(scraper.requestProjectIssues());
     }
 
 }
