@@ -3,7 +3,18 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.lang.StringBuilder;
 import java.net.URLConnection;
+import java.io.Reader;
+import org.json.*;
 
+/**
+ * The GithubScraper tool from the four musketeers team.
+ *
+ * @author Patrick Beekman
+ * @author Dillon Carns
+ * @author Eli McGalliard
+ * @author Sam Barr
+ * @version 11/13/2018
+ */
 public class GithubScraper {
 
     private String baseURL = "";
@@ -41,7 +52,7 @@ public class GithubScraper {
         URLConnection uc = urlObj.openConnection();
 
         uc.setRequestProperty("X-Requested-With", "Curl");
-
+        JSONObject jObj;
         InputStreamReader inputStream = new InputStreamReader(uc.getInputStream());
         // Read the input stream
         final int bufferSize = 1024;
@@ -53,12 +64,23 @@ public class GithubScraper {
                 break;
             out.append(buffer, 0, rsz);
         }
-        return out.toString();
+        //return out.toString();
+        
+         
+        try {
+             jObj = HTTP.toJSONObject(out.toString());
+             //jObj = new JSONObject(jObj, new String[] {"https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers"});
+        } catch (Exception e) {
+            return "Failed to parse as JSONObject";
+        }
+        
+        return jObj.toString();
+        
     }
 
     public static void main(String[] args) throws IOException {
         GithubScraper scraper = new GithubScraper("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/");
-        System.out.print(scraper.requestProjectIssues());
+        System.out.println(scraper.requestProjectIssues());
     }
 
 }
