@@ -13,7 +13,6 @@ JUNIT4_RUNNER = org.junit.runner.JUnitCore
 HAMCREST_JAR = /usr/share/java/hamcrest/core-1.1.jar
 CKSTYLE_COMMAND =  -jar /usr/local/checkstyle-5.5/checkstyle-5.5-all.jar
 CKSTYLE_XML = style.xml
-JSON = org.json.jar
 
 default: 
 	@echo "usage: make target"
@@ -32,15 +31,15 @@ default:
 #Essential that command lines start with single TAB character
 
 compile: GithubScraper.java \
-          $(JSON)
-	javac -cp .:$(JSON) GithubScraper.java
+          $()
+	javac GithubScraper.java
 
 clean:
 	rm -f *~
 	rm -f *.class
 
 run: GithubScraper.class
-	java -cp .:$(JSON) GithubScraper
+	java GithubScraper
 
 #defchk: GithubScraper.java $(CKSTYLE_XML)
 #	java $(CKSTYLE_COMMAND) -c $(CKSTYLE_XML) GithubScraper.java
