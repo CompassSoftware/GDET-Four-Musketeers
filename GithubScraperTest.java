@@ -30,4 +30,17 @@ public class GithubScraperTest {
           assertEquals(out, "https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/");
       }
 
+      @Test
+      public void testFirstCommit() {
+          GithubScraper git = new GithubScraper("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/");
+          String out = new String();
+          try {
+              out = git.requestProjectCommits();
+          } catch (IOException e) {
+              System.out.println("IOException");
+          }
+          String[] pieces = out.split("\"");
+          assertEquals("Jay Fenwick", pieces[1]);
+      }
+
 }

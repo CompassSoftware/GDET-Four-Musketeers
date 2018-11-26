@@ -100,8 +100,11 @@ public class GithubScraper {
 
     public static void main(String[] args) throws IOException {
         GithubScraper scraper = new GithubScraper("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/");
-        System.out.println(scraper.requestProjectIssues());
-        System.out.println(scraper.requestProjectCommits());
+        String out = scraper.requestProjectCommits();
+        String[] s = out.split("\"");
+        System.out.println(s[1]);
+        //System.out.println(scraper.requestProjectIssues());
+        //System.out.println(scraper.requestProjectCommits());
     }
 
 }
