@@ -6,6 +6,7 @@ import java.lang.StringBuilder;
 import java.net.URLConnection;
 import java.net.HttpURLConnection;
 import java.io.Reader;
+import java.util.Scanner;
 
 /**
  * The GithubScraper tool from the four musketeers team.
@@ -17,6 +18,7 @@ import java.io.Reader;
  * @version 11/13/2018
  */
 public class GithubScraper {
+    
 
     private String baseURL = "";
     
@@ -97,11 +99,5 @@ public class GithubScraper {
         }
         return out.toString();
     }
-
-    public static void main(String[] args) throws IOException {
-        GithubScraper scraper = new GithubScraper("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/");
-        System.out.println(scraper.requestProjectIssues());
-        System.out.println(scraper.requestProjectCommits());
-    }
-
 }
+

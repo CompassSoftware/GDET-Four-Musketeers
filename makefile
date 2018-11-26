@@ -30,16 +30,16 @@ default:
 #etc.
 #Essential that command lines start with single TAB character
 
-compile: GithubScraper.java \
+compile: GithubScraper.java GithubDriver.java\
           $()
-	javac GithubScraper.java
+	javac GithubScraper.java GithubDriver.java
 
 clean:
 	rm -f *~
 	rm -f *.class
 
-run: GithubScraper.class
-	java GithubScraper
+run: GithubDriver.class
+	java GithubDriver
 
 #defchk: GithubScraper.java $(CKSTYLE_XML)
 #	java $(CKSTYLE_COMMAND) -c $(CKSTYLE_XML) GithubScraper.java
