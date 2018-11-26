@@ -40,12 +40,12 @@ public class GithubScraper {
 
     public String requestProjectIssues() throws IOException {
         System.out.println("Issues retrieved:");
-        return curlRequest("issues");
+        return curlRequest("issues", "\"title\"");
     }
 
     public String requestProjectCommits() throws IOException {
         System.out.println("Commits retrieved:");
-        return curlRequest("commits");
+        return curlRequest("commits", "\"commit\"");
     }
 
     /*
@@ -53,7 +53,7 @@ public class GithubScraper {
      * @param urlEXT - String the url extensions you want for your curl request
      * @return the response from the curl request
      */
-    private String curlRequest(String urlExt) throws IOException {
+    private String curlRequest(String urlExt, String key) throws IOException {
 
         URL urlObj = new URL(getBaseURL() + urlExt);
         HttpURLConnection uc = (HttpURLConnection) urlObj.openConnection();
@@ -71,7 +71,7 @@ public class GithubScraper {
         
         bufReader.close();
         
-        return buildOutput(response.toString().split(","));
+        return buildOutput(response.toString().split(","), key);
         
     }
     /**
@@ -79,19 +79,23 @@ public class GithubScraper {
      * This allows us to parse the json curl requests a little easier.
      * @param arguments of type String array.
      */
-    private String buildOutput(String[] arguments) {
-        
+    private String buildOutput(String[] arguments, String keyword) {
+        int count = 1;
         final StringBuilder out = new StringBuilder();
-       
-        int i = 1;
-        for (String arg : arguments) {
-            if(arg.contains("title"))
-                out.append(i++ + ". " + arg.split(":")[1] + "\n");
+        for (int i = 0; i < arguments.length; i++) {
+            //System.out.println(arg); 
+            String[] args = arguments[i].split(":");
             
+            if(args[0].equals(keyword) && keyword.equals("\"commit\"")) {
+                String[] date = arguments[i + 5].split(":");
+                String[] msg = arguments[i + 6].split(":");
+                 
+                out.append(count++ + ". " + "Author: " + args[3] + " Message: " + msg[1] + " Date: " + date[1] +  "\n");
+            }
+            else if(args[0].equals(keyword) && !keyword.equals("\"commit\""))
+                out.append(count++ + ". " + arguments[i].split(":")[1] + "\n");
         }
-
         return out.toString();
-
     }
 
     public static void main(String[] args) throws IOException {
