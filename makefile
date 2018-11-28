@@ -30,9 +30,9 @@ default:
 #etc.
 #Essential that command lines start with single TAB character
 
-compile: GithubScraper.java GithubDriver.java\
+compile: GithubScraper.java GithubDriver.java GitObject.java Issues.java\
           $()
-	javac GithubScraper.java GithubDriver.java
+	javac GithubScraper.java GitObject.java Issues.java GithubDriver.java
 
 clean:
 	rm -f *~

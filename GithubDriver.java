@@ -37,11 +37,11 @@ public class GithubDriver {
             switch(choice) {
                 case ISSUES:
                     //TODO: create choices over issues
-                    System.out.println(scraper.requestProjectIssues());
+                    System.out.println(scraper.getIssues());
                     break;
                 case COMMITS:
                     //TODO: create choices over commits
-                    System.out.println(scraper.requestProjectCommits());
+                    //System.out.println(scraper.requestProjectCommits());
                     break;
                 case QUIT:
                     System.exit(0);

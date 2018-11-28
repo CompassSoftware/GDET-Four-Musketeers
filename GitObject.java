@@ -3,7 +3,7 @@
  * handles all things issues related.
  * @version 11/26/2018
  */
-public class abstract GitObject {
+public abstract class GitObject {
     
     private String[] data;
 
@@ -15,9 +15,13 @@ public class abstract GitObject {
         data = args;
     }
 
-    public getData() {
+    public String[] getData() {
         return data;
     }
 
-    public abstract getData(String keyWord);
+    public void setData(String[] data) {
+        this.data = data;
+    }
+
+    public abstract void getData(String keyWord);
 }
