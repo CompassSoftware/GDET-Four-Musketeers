@@ -31,6 +31,7 @@ public class GithubDriver {
                 + "2)\tCommits\n"
                 + "3)\tExit\n"
                 + "(More on the way soon!)\n");
+
             choice = keyboard.nextInt();
             keyboard.nextLine();
              
@@ -42,6 +43,7 @@ public class GithubDriver {
                 case COMMITS:
                     //TODO: create choices over commits
                     //System.out.println(scraper.requestProjectCommits());
+                    System.out.println(scraper.getCommits());
                     break;
                 case QUIT:
                     System.exit(0);

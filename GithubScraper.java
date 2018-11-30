@@ -22,14 +22,20 @@ public class GithubScraper {
 
     private String baseURL = "";
     private Issues issues; //encompasses all issues data.
+    private Commits commits; //encompasses all commits data.
     
     public GithubScraper(String url) throws IOException {
         setBaseURL(url);
         issues = new Issues(requestProjectIssues());
+        commits = new Commits(requestProjectCommits());
     }
 
     public Issues getIssues() {
         return issues;
+    }
+
+    public Commits getCommits() {
+        return commits;
     }
 
     /*

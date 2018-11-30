@@ -36,7 +36,6 @@ public class Issues extends GitObject {
     // == private methods ==
 
     private void prepIssues() {
-        StringBuilder out = new StringBuilder();
         String title = "";
         String date = "";
         String time = "";
@@ -70,7 +69,8 @@ public class Issues extends GitObject {
                 count++;
             }
             else if (args[0].toLowerCase().contains("comments_url")) {
-                comments_url = args[1];
+                comments_url = "";
+                for (int j = 1; j < args.length; j++) comments_url += args[j];
                 count++;
             }
             else if (args[0].toLowerCase().contains("body")) {
