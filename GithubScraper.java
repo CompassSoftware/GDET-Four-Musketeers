@@ -6,6 +6,7 @@ import java.lang.StringBuilder;
 import java.net.URLConnection;
 import java.net.HttpURLConnection;
 import java.io.Reader;
+import java.util.Scanner;
 
 /**
  * The GithubScraper tool from the four musketeers team.
@@ -17,11 +18,24 @@ import java.io.Reader;
  * @version 11/13/2018
  */
 public class GithubScraper {
+    
 
     private String baseURL = "";
+    private Issues issues; //encompasses all issues data.
+    private Commits commits; //encompasses all commits data.
     
-    public GithubScraper(String url) {
+    public GithubScraper(String url) throws IOException {
         setBaseURL(url);
+        issues = new Issues(requestProjectIssues());
+        commits = new Commits(requestProjectCommits());
+    }
+
+    public Issues getIssues() {
+        return issues;
+    }
+
+    public Commits getCommits() {
+        return commits;
     }
 
     /*
@@ -38,22 +52,23 @@ public class GithubScraper {
         return baseURL;
     }
 
-    public String requestProjectIssues() throws IOException {
+    public String[] requestProjectIssues() throws IOException {
         System.out.println("Issues retrieved:");
-        return curlRequest("issues", "\"title\"");
+        return curlRequest("issues");
     }
 
-    public String requestProjectCommits() throws IOException {
+    public String[] requestProjectCommits() throws IOException {
         System.out.println("Commits retrieved:");
-        return curlRequest("commits", "\"commit\"");
+        return curlRequest("commits");
     }
 
     /*
-     * Takes in some url extensions to curl and then returns the response
+     * Takes in some url extensions to curl and then returns the response.
+     * builds the issues and commits objects currently.
      * @param urlEXT - String the url extensions you want for your curl request
      * @return the response from the curl request
      */
-    private String curlRequest(String urlExt, String key) throws IOException {
+    private String[] curlRequest(String urlExt) throws IOException {
 
         URL urlObj = new URL(getBaseURL() + urlExt);
         HttpURLConnection uc = (HttpURLConnection) urlObj.openConnection();
@@ -70,15 +85,14 @@ public class GithubScraper {
         }
         
         bufReader.close();
-        
-        return buildOutput(response.toString().split(","), key);
-        
+        return response.toString().split(",");
     }
     /**
      * this method was extracted in order to create strings from built arrays.
      * This allows us to parse the json curl requests a little easier.
      * @param arguments of type String array.
      */
+    //CURRENTLY UNUSED!
     private String buildOutput(String[] arguments, String keyword) {
         int count = 1;
         final StringBuilder out = new StringBuilder();
@@ -93,15 +107,9 @@ public class GithubScraper {
                 out.append(count++ + ". " + "Author: " + args[3] + " Message: " + msg[1] + " Date: " + date[1] +  "\n");
             }
             else if(args[0].equals(keyword) && !keyword.equals("\"commit\""))
-                out.append(count++ + ". " + arguments[i].split(":")[1] + "\n");
+                out.append(count++ + ". " + arguments[i] + "\n");//.split(":")[1] + "\n");
         }
         return out.toString();
     }
-
-    public static void main(String[] args) throws IOException {
-        GithubScraper scraper = new GithubScraper("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/");
-        System.out.println(scraper.requestProjectIssues());
-        System.out.println(scraper.requestProjectCommits());
-    }
-
 }
+
