@@ -79,4 +79,17 @@ public class GithubScraperTest {
           assertTrue(issues != null);
       }
 
+      @Test
+      public void testGettingCommits() {
+          GithubScraper git = null;
+          Commits commits = null;
+          try {
+              git = new GithubScraper("https://api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/");
+              commits = git.getCommits();
+          } catch (IOException e) {
+              assertEquals(false, false);
+          }
+          assertTrue(commits != null);
+      }
+
 }
