@@ -23,11 +23,13 @@ public class GithubScraper {
     private String baseURL = "";
     private Issues issues; //encompasses all issues data.
     private Commits commits; //encompasses all commits data.
+    private PullRequests pullRequests; //encompasses all pull request data.
     
     public GithubScraper(String url) throws IOException {
         setBaseURL(url);
         issues = new Issues(requestProjectIssues());
         commits = new Commits(requestProjectCommits());
+        pullRequests = new PullRequests(requestProjectPullRequests());
     }
 
     public Issues getIssues() {
@@ -36,6 +38,10 @@ public class GithubScraper {
 
     public Commits getCommits() {
         return commits;
+    }
+
+    public PullRequests getPullRequests() {
+        return pullRequests;
     }
 
     /*
@@ -60,6 +66,11 @@ public class GithubScraper {
     public String[] requestProjectCommits() throws IOException {
         System.out.println("Commits retrieved:");
         return curlRequest("commits");
+    }
+
+    public String[] requestProjectPullRequests() throws IOException {
+        System.out.println("Pull Requests retrieved:");
+        return curlRequest("pulls");
     }
 
     /*
