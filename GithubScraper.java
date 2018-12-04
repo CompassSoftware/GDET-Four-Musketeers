@@ -7,6 +7,7 @@ import java.net.URLConnection;
 import java.net.HttpURLConnection;
 import java.io.Reader;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * The GithubScraper tool from the four musketeers team.
@@ -23,11 +24,15 @@ public class GithubScraper {
     private String baseURL = "";
     private Issues issues; //encompasses all issues data.
     private Commits commits; //encompasses all commits data.
+    private ArrayList<String> contributors;
     
     public GithubScraper(String url) throws IOException {
         setBaseURL(url);
-        issues = new Issues(requestProjectIssues());
-        commits = new Commits(requestProjectCommits());
+        getUsers();
+        //for (String name : contributors)
+        //    System.out.println(name);
+        //issues = new Issues(requestProjectIssues(), contributors);
+        commits = new Commits(requestProjectCommits(), contributors);
     }
 
     public Issues getIssues() {
@@ -53,13 +58,25 @@ public class GithubScraper {
     }
 
     public String[] requestProjectIssues() throws IOException {
-        System.out.println("Issues retrieved:");
+        //System.out.println("Issues retrieved:");
         return curlRequest("issues");
     }
 
     public String[] requestProjectCommits() throws IOException {
-        System.out.println("Commits retrieved:");
+        //System.out.println("Commits retrieved:");
         return curlRequest("commits");
+    }
+
+    private void getUsers() throws IOException {
+        String[] temp = curlRequest("contributors");
+        contributors = new ArrayList<>();
+        for (int i = 0; i < temp.length; i++) {
+            String[] contribString = temp[i].split(":"); 
+            //System.out.println(temp[i]);
+            if(contribString[0].contains("login")) {
+                contributors.add(contribString[1]);
+            }
+        }
     }
 
     /*
@@ -82,6 +99,7 @@ public class GithubScraper {
         StringBuffer response = new StringBuffer();
         while((inputLine = bufReader.readLine()) != null) {
             response.append(inputLine);
+            //System.out.println(inputLine);
         }
         
         bufReader.close();

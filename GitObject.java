@@ -1,18 +1,29 @@
+import java.util.ArrayList;
 /**
- * This is the issues class,
- * handles all things issues related.
+ * This is the gitobject class,
+ * provides a base for gitobject related extensions.
  * @version 11/26/2018
  */
 public abstract class GitObject {
     
     private String[] data;
+    private ArrayList<String> contributors;
 
-    public GitObject() {
-        this(new String[100]);
+    private GitObject() {
+        //dont allow no-arg constructors
     }
 
-    public GitObject(String[] args) {
+    public GitObject(String[] args, ArrayList<String> contribs) {
         data = args;
+        contributors = contribs;
+    }
+
+    public ArrayList<String> getContributors() {
+        return contributors;
+    }
+
+    public void setData(ArrayList<String> contributors) {
+        this.contributors = contributors;
     }
 
     public String[] getData() {
@@ -22,6 +33,8 @@ public abstract class GitObject {
     public void setData(String[] data) {
         this.data = data;
     }
+    
+    public abstract String getGeneral();
 
-    public abstract void getData(String keyWord);
+    public abstract String getData(String keyWord);
 }
