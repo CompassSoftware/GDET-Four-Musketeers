@@ -31,7 +31,7 @@ public class GithubScraper {
         getUsers();
         //for (String name : contributors)
         //    System.out.println(name);
-        //issues = new Issues(requestProjectIssues(), contributors);
+        issues = new Issues(requestProjectIssues(), contributors);
         commits = new Commits(requestProjectCommits(), contributors);
     }
 

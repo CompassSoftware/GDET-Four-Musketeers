@@ -120,7 +120,7 @@ public class Commits extends GitObject {
             if (args[0].toLowerCase().equals("\"commit\"")) {
                 author = args[3];
                 String[] dates = temp[i + 5].split(":");
-                date = dates[0];
+                date = dates[1];
                 String[] msg = temp[i + 6].split(":");
                 message = msg[1];
                 String[] r = temp[i + 9].split(":");
@@ -179,7 +179,13 @@ public class Commits extends GitObject {
        }
 
        public String toString() {
-            return "Author: " + author + ", Username: " + userName + ", Message: " + message + ", Date: " + date;
+            return "Author: " + author 
+                + ", Username: " + userName 
+                + ", Message: " + message 
+                + ", Date: " + date
+                + ", Comments URL: " + comments_url
+                + ", URL: " + url
+                ;
        }
     }
 }
