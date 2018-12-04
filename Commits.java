@@ -65,8 +65,28 @@ public class Commits extends GitObject {
         return ret;
     }
 
-    public Commit get(int toGet) {
-        return commits.get(commits.size() - toGet);
+    public String getAuthor(int toGet) {
+        return commits.get(commits.size() - toGet).author;
+    }
+
+    public String getUserName(int toGet) {
+        return commits.get(commits.size() - toGet).userName;
+    }
+
+    public String getDate(int toGet) {
+        return commits.get(commits.size() - toGet).date;
+    }
+
+    public String getMessage(int toGet) {
+        return commits.get(commits.size() - toGet).message;
+    }
+
+    public String getCommentsUrl(int toGet) {
+        return commits.get(commits.size() - toGet).comments_url;
+    }
+
+    public String getUrl(int toGet) {
+        return commits.get(commits.size() - toGet).url;
     }
 
     public int numCommits() {

@@ -33,13 +33,33 @@ public class Issues extends GitObject {
         return output;
     }
 
-    public Issue get(int index) {
-        return issues.get(issues.size() - index);
-    }
-
     public String getData(String keyword) {
         System.out.print(toString());
         return null;
+    }
+
+    public String getTitle(int index) {
+        return issues.get(issues.size() - index).title;
+    }
+
+    public String getDate(int index) {
+        return issues.get(issues.size() - index).date;
+    }
+
+    public String getTime(int index) {
+        return issues.get(issues.size() - index).time;
+    }
+
+    public String getUrl(int index) {
+        return issues.get(issues.size() - index).url;
+    }
+
+    public String getCommentsurl(int index) {
+        return issues.get(issues.size() - index).comments_url;
+    }
+
+    public String getBody(int index) {
+        return issues.get(issues.size() - index).body;
     }
 
     public int numIssues() {
