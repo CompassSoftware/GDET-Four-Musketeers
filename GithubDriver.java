@@ -5,7 +5,9 @@ public class GithubDriver {
 
     public static final int ISSUES = 1;
     public static final int COMMITS = 2;
-    public static final int QUIT = 3;
+    public static final int SAVE_ISSUES = 3;
+    public static final int SAVE_COMMITS = 4;
+    public static final int QUIT = 5;
 
     public static void printUsage() {
         System.out.printf("Please indicate a valid repository.\n");
@@ -29,7 +31,9 @@ public class GithubDriver {
             System.out.println("Please indicate what you would like to see:\n"
                 + "1)\tIssues\n"
                 + "2)\tCommits\n"
-                + "3)\tExit\n"
+                + "3)\tSave Issues to file\n"
+                + "4)\tSave Commits to file\n"
+                + "5)\tExit\n"
                 + "(More on the way soon!)\n");
 
             choice = keyboard.nextInt();
@@ -46,6 +50,12 @@ public class GithubDriver {
                     //System.out.println(scraper.requestProjectCommits());
                     System.out.println(scraper.getCommits());
                     System.out.println(scraper.getCommits().getGeneral());
+                    break;
+                case SAVE_ISSUES:
+                    scraper.saveIssues();
+                    break;
+                case SAVE_COMMITS:
+                    scraper.saveCommits();
                     break;
                 case QUIT:
                     System.exit(0);

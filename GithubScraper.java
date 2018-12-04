@@ -43,6 +43,14 @@ public class GithubScraper {
         return commits;
     }
 
+    public void saveIssues() {
+        issues.saveToFile();
+    }
+
+    public void saveCommits() {
+        commits.saveToFile();
+    }
+
     /*
      * Sets the base url of the project
      */
