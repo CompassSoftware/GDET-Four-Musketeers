@@ -13,16 +13,37 @@ public class Issues extends GitObject {
     
     // == constructors ==
      
-    public Issues(String[] data) {
-        super(data);
+    public Issues(String[] data, ArrayList<String> contribs) {
+        super(data, contribs);
         issues = new ArrayList<>();
         prepIssues();
     }
 
     // == public methods ==
+    public String getGeneral() {
+        ArrayList<String> users = getContributors();
+        int[] counts = new int[users.size()];
+        String output = "Issues (" + numIssues() + "):\n--------------\n";
+        for (Issue issue : issues) {
+            output += "\nTitle: " + issue.title
+                + "\nDate: " + issue.date
+                + "\nURL: " + issue.url; 
+        }
 
-    public void getData(String keyword) {
+        return output;
+    }
+
+    public Issue get(int index) {
+        return issues.get(issues.size() - index);
+    }
+
+    public String getData(String keyword) {
         System.out.print(toString());
+        return null;
+    }
+
+    public int numIssues() {
+        return issues.size();
     }
     
     public String toString() {
@@ -34,6 +55,15 @@ public class Issues extends GitObject {
     }
 
     // == private methods ==
+    private boolean isInList(ArrayList<String> list, String keyword) {
+        
+        for (int i = 0; i < list.size(); i++)
+        {
+            if (list.get(i).equals(keyword))
+                return true;
+        }
+        return false;
+    }
 
     private void prepIssues() {
         String title = "";
