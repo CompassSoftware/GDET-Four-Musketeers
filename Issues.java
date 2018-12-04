@@ -28,9 +28,10 @@ public class Issues extends GitObject {
         int[] counts = new int[users.size()];
         String output = "Issues (" + numIssues() + "):\n--------------\n";
         for (Issue issue : issues) {
-            output += "\nTitle: " + issue.title
+            output += "\n> Title: " + issue.title
                 + "\nDate: " + issue.date
-                + "\nURL: " + issue.url; 
+                + "\nURL: " + issue.url
+                + "\n---------------------------\n"; 
         }
 
         return output;
@@ -39,6 +40,10 @@ public class Issues extends GitObject {
     public String getData(String keyword) {
         System.out.print(toString());
         return null;
+    }
+
+    public String get(int index) {
+        return issues.get(issues.size() - index).toString();
     }
 
     public String getTitle(int index) {
@@ -71,8 +76,9 @@ public class Issues extends GitObject {
     
     public String toString() {
         String ret = "";
+        int j = issues.size();
         for (int i = 0; i < issues.size(); i++) {
-            ret += (i + 1) + ") " + issues.get(i).toString() + "\n";
+            ret += j-- + ") " + issues.get(i).toString() + "\n";
         }
         return ret;
     }
@@ -151,10 +157,7 @@ public class Issues extends GitObject {
 
             if (count == NUM_FIELDS) {
                 count = 0;
-                //System.out.println(title + "\n" + date + "\n" + url + "\n" + body);
-                //System.out.println(title);
                 Issue issue = new Issue(title, date, time, url, comments_url, body);
-                //System.out.println(issue);
                 issues.add(issue);
             }
         }

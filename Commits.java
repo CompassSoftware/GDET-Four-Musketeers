@@ -68,6 +68,10 @@ public class Commits extends GitObject {
         return ret;
     }
 
+    public String get(int toGet) {
+        return commits.get(commits.size() - toGet).toString();
+    }
+
     public String getAuthor(int toGet) {
         return commits.get(commits.size() - toGet).author;
     }
@@ -203,10 +207,10 @@ public class Commits extends GitObject {
             return "Author: " + author 
                 + ", Username: " + userName 
                 + ", Message: " + message 
-                + ", Date: " + date
-                + ", Comments URL: " + comments_url
-                + ", URL: " + url
-                ;
+                + ", Date: " + date;
+                //+ ", Comments URL: " + comments_url
+                //+ ", URL: " + url
+                //;
        }
     }
 }
