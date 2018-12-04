@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  * This class is responsible for keepign track of the commit data for a given repo.
  * Used in the GithubScraper class primarily.
@@ -91,6 +94,24 @@ public class Commits extends GitObject {
 
     public int numCommits() {
         return commits.size();
+    }
+
+    public void saveToFile() {
+        String data = toString();
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter("Commits.txt"));
+            writer.write(data);
+
+            System.out.println("Saved commits to Commits.txt");
+        } catch ( IOException e) {
+        } finally {
+            try {
+                if ( writer != null)
+                    writer.close( );
+            } catch ( IOException e) {
+            }
+        }
     }
 
     // == private methods ==

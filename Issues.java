@@ -74,6 +74,10 @@ public class Issues extends GitObject {
         return ret;
     }
 
+    public void saveToFile() {
+        System.out.println("Saving");
+    }
+
     // == private methods ==
     private boolean isInList(ArrayList<String> list, String keyword) {
         

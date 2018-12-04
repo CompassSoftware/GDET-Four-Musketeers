@@ -37,4 +37,6 @@ public abstract class GitObject {
     public abstract String getGeneral();
 
     public abstract String getData(String keyWord);
+
+    public abstract void saveToFile();
 }
