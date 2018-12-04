@@ -63,7 +63,19 @@ public class GithubDriver {
                     System.out.println("Please indicate a valid choice from the " + c);
                     int a = s.nextInt();
                     s.nextLine();
-                    if (a > 0)
+                    if (opt == ISSUES) {
+                        if (a > 0 && a < scraper.getIssues().numIssues())
+                            System.out.println(scraper.getIssues().get(a));
+                        else
+                            System.out.println("Not a valid choice.");
+
+                    }
+                    else if (opt == COMMITS) {
+                        if (a > 0 && a < scraper.getCommits().numCommits())
+                            System.out.println(scraper.getCommits().get(a));
+                        else
+                            System.out.println("Not a valid choice.");
+                    }
                     break;
                 case LIST:
                     if (opt == ISSUES)
@@ -76,7 +88,7 @@ public class GithubDriver {
                 default:
                     break;
             }
-        System.out.println("Please select " + c + "  choice:"
+        System.out.println("Please select " + c + " choice:"
                            + "\n1) General Info"
                            + "\n2) Comments"
                            + "\n3) Info on specific commit."

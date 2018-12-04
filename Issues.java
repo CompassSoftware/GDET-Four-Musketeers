@@ -73,8 +73,9 @@ public class Issues extends GitObject {
     
     public String toString() {
         String ret = "";
+        int j = issues.size();
         for (int i = 0; i < issues.size(); i++) {
-            ret += (i + 1) + ") " + issues.get(i).toString() + "\n";
+            ret += j-- + ") " + issues.get(i).toString() + "\n";
         }
         return ret;
     }
