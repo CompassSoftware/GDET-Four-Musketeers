@@ -68,6 +68,10 @@ public class Commits extends GitObject {
         return ret;
     }
 
+    public String get(int toGet) {
+        return commits.get(commits.size() - toGet).toString();
+    }
+
     public String getAuthor(int toGet) {
         return commits.get(commits.size() - toGet).author;
     }
@@ -96,11 +100,13 @@ public class Commits extends GitObject {
         return commits.size();
     }
 
-    public void saveToFile() {
-        String data = toString();
+    public void saveToFile(String repo) {
+        String[] r = repo.split("/");
+        repo = r[r.length-1];
+        String data = getGeneral();
         BufferedWriter writer = null;
         try {
-            writer = new BufferedWriter(new FileWriter("Commits.txt"));
+            writer = new BufferedWriter(new FileWriter(repo + "-Commits.txt"));
             writer.write(data);
 
             System.out.println("Saved commits to Commits.txt");
@@ -203,10 +209,10 @@ public class Commits extends GitObject {
             return "Author: " + author 
                 + ", Username: " + userName 
                 + ", Message: " + message 
-                + ", Date: " + date
-                + ", Comments URL: " + comments_url
-                + ", URL: " + url
-                ;
+                + ", Date: " + date;
+                //+ ", Comments URL: " + comments_url
+                //+ ", URL: " + url
+                //;
        }
     }
 }

@@ -44,11 +44,11 @@ public class GithubScraper {
     }
 
     public void saveIssues() {
-        issues.saveToFile();
+        issues.saveToFile(baseURL);
     }
 
     public void saveCommits() {
-        commits.saveToFile();
+        commits.saveToFile(baseURL);
     }
 
     /*
