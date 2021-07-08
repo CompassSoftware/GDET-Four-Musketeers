@@ -1,0 +1,36 @@
+Commits (20):
+--------------
+User: "patrickbeekman"
+Number of Commits: 5
+Messages: 
+>"added more tests to check for correct functionality in the GithubScraper class."
+>"Merge branch 'master' into test-getting-objects"
+>"rewrote tests with the testing class with the new stuff."
+>"added comments as well as changed the function to return instead of print."
+>"able to curl a request to the github api."
+-------------------------------
+User: "carnsds7"
+Number of Commits: 6
+Messages: 
+>"Made it possible to get general data from gitobjects"
+>"Added commit functionality to get the general data"
+>"Started extension and abstraction of classes"
+>"Able to see commit data now"
+>"Included the org.json.jar file and attempted to parse the json from curl request"
+>"Merge pull request #13 from CompassSoftware/GithubScraper\n\nGitHub scraper"
+-------------------------------
+User: "mcgalliarder"
+Number of Commits: 7
+Messages: 
+>"Merge pull request #26 from CompassSoftware/menu_dev\n\nMenu dev"
+>"Updated and added tests to GithubScraperTest"
+>"Merge branch 'master' of https
+>"Merge pull request #23 from CompassSoftware/general_data\n\nAdded getters for specific inner class objects"
+>"Added some tests to the testing class and made changes to existing methods."
+>"Merge pull request #22 from CompassSoftware/general_data\n\nMade it possible to get general data from gitobjects"
+>"Merge pull request #16 from CompassSoftware/json_parse\n\nJson parse"
+-------------------------------
+User: "fenwickjb"
+Number of Commits: 0
+Messages: 
+-------------------------------

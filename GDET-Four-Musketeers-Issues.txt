@@ -1,0 +1,62 @@
+Issues (12):
+--------------
+
+> Title: "Save to file"
+Date: "2018-12-04
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/25"
+---------------------------
+
+> Title: "Save Issues to file"
+Date: "2018-12-04
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/24"
+---------------------------
+
+> Title: "Build and manipulate JSON objects"
+Date: "2018-11-19
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/14"
+---------------------------
+
+> Title: "Install the java Github API"
+Date: "2018-11-09
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/12"
+---------------------------
+
+> Title: "Get the file contents"
+Date: "2018-11-12
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/10"
+---------------------------
+
+> Title: "Parse comments from pull requests"
+Date: "2018-11-09
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/9"
+---------------------------
+
+> Title: "Parse comments from commits"
+Date: "2018-11-09
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/8"
+---------------------------
+
+> Title: "Get the pull request data from master and other branches"
+Date: "2018-11-09
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/7"
+---------------------------
+
+> Title: "Get the issues data from master and other branches"
+Date: "2018-11-13
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/6"
+---------------------------
+
+> Title: "Get the commit data from Master and other branches"
+Date: "2018-11-12
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/4"
+---------------------------
+
+> Title: "issue"
+Date: "2018-11-09
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/3"
+---------------------------
+
+> Title: "Create project “Kanban” board."
+Date: "2018-11-09
+URL: "https//api.github.com/repos/CompassSoftware/GDET-Four-Musketeers/issues/2"
+---------------------------

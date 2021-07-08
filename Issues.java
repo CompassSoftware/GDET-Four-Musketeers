@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  *
  * Class responsible for parsing the issues string array.
@@ -78,6 +81,26 @@ public class Issues extends GitObject {
             ret += j-- + ") " + issues.get(i).toString() + "\n";
         }
         return ret;
+    }
+
+    public void saveToFile(String repo) {
+        String[] r = repo.split("/");
+        repo = r[r.length-1];
+        String data = getGeneral();
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(repo + "-Issues.txt"));
+            writer.write(data);
+
+            System.out.println("Saved issues to Issues.txt");
+        } catch ( IOException e) {
+        } finally {
+            try {
+                if ( writer != null)
+                    writer.close( );
+            } catch ( IOException e) {
+            }
+        }
     }
 
     // == private methods ==

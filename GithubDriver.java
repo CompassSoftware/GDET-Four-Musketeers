@@ -3,17 +3,17 @@ import java.io.IOException;
 
 public class GithubDriver {
 
-    // == main menu options ==
-    private  static final int ISSUES = 1;
-    private static final int COMMITS = 2;
-    private static final int QUIT = 3;
+    public static final int ISSUES = 1;
+    public static final int COMMITS = 2;
+    public static final int QUIT = 3;
 
     // == secondary menu options ==
     private static final int GENERAL = 1;
     private static final int COMMENTS = 2;
     private static final int SPECIFIC = 3;
     private static final int LIST = 4;
-    private static final int RETURN = 5;
+    private static final int SAVE = 5;
+    private static final int RETURN = 6;
 
     private static final String ISSUES_STR = "Issues";
     private static final String COMMITS_STR = "Commits";
@@ -44,7 +44,8 @@ public class GithubDriver {
                            + "\n2) Comments"
                            + "\n3) Info on specific commit."
                            + "\n4) List the " + c
-                           + "\n5) Return to main menu\n"); 
+                           + "\n5) Save " + c + " to file."
+                           + "\n6) Return to main menu\n"); 
         while (true) {
             int choice = s.nextInt();
             s.nextLine();
@@ -57,6 +58,7 @@ public class GithubDriver {
                     break;
                 case COMMENTS:
                     //TODO
+                    System.out.println("Coming soon to a terminal near you!");
                     break;
                 case SPECIFIC:
                     //TODO
@@ -83,6 +85,12 @@ public class GithubDriver {
                     else if (opt == COMMITS)
                         System.out.println(scraper.getCommits());
                     break;
+                case SAVE:
+                    if (opt == ISSUES)
+                        scraper.saveIssues();
+                    else if (opt == COMMITS)
+                        scraper.saveCommits();
+                    break;
                 case RETURN:
                     return;
                 default:
@@ -93,7 +101,8 @@ public class GithubDriver {
                            + "\n2) Comments"
                            + "\n3) Info on specific commit."
                            + "\n4) List the " + c
-                           + "\n5) Return to main menu\n"); 
+                           + "\n5) Save " + c + " to file."
+                           + "\n6) Return to main menu\n"); 
         }
     }
 
